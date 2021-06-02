@@ -1,0 +1,92 @@
+Knex?
+é uma biblioteca para manipulação de dados sql.
+
+Atraves do knex você consegue trabalhar com banco de dados sql no node.
+RAW - "SELECT* FROM POST"//MYSQL2
+ORM -linguagem - que usa Models -> Atigos.create({tile: "com fazer.."}) (estilo o blog que fizemos)
+Query Builders -> vai construir comandos SQL para voce sem que voce tenha que digitar SQL propriamente dito
+
+banco.select().table("post")
+
+npm init
+
+npm install knex --save
+
+npm install mysql2 --save (se for usar mysql)
+
+copiar a string de conexão do knex
+que esta na documentação
+
+const knex = require('knex')({
+    client: 'mysql2', <- Alterar para a biblioteca que voce esta usando
+    connection: {
+      host : '127.0.0.1',
+      user : 'root', <- usurio que esta o nome do banco de dados do seu computador
+      password : 'cskh9492',<- senha do seu banco de dados
+      database : 'myapp_test'
+    }
+  });
+
+
+Ná parte databse: 'myapp_test'
+ tem que criar uma tabela(banco de dados) no mysql Workbanch ou o heide
+
+Sempre que voce estar trablahando com QUERY builder,
+voce tem que criar sua table na mão isso é diferente no knex pq tem um recurso chamada migration
+assim voce pode criar uma tabela com javascript.
+
+Insert:
+
+primeiro definimos nossos dados no arquivo index.js conforme abaixo:
+
+var database = require("./database")
+var dados = {
+    nome: "Sea of thieves",
+    preço: 50.67
+}
+Àpos isso eu chamo o:
+ database.insert(dados).into("games")( inserir dados na tabela games)
+quando usado isso ele retornar uma liguagem sql para saber vizualizar essa liguagem query
+
+Nós damos uma variavel para o comando acima:
+
+var query = database.insert(dados).into("games")
+
+console.log(query.toQuery()) <- desse forma vemos a query que foi usadas
+
+isso serve para ver o que foi retornado.
+
+ database.insert(dados).into("games") <- ele é uma promise então Tem que ser tratado com uma.
+
+database.insert(dados).into("games").then(data=>{
+    console.log(data)
+}).catch(err=>{
+    console.log(err)
+})
+No terminal do node ele sempre volta com o numero de usuario que foi Adicionado
+
+para inserir masi de uma vez: pode ser feito um array
+
+var dados = [
+
+{
+    nome: "Call of Duty WarZone",
+    preço: 60.00
+},
+
+{
+    nome: "League Of Legends",
+    preço: 30.00
+},
+
+{
+    nome: "CyberPunk 2077",
+    preço: 270.00
+},
+
+
+
+]
+
+
+
