@@ -1,0 +1,23 @@
+{
+  "name": "knex_avancado",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosbandelli/Knex_avancado.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosbandelli/Knex_avancado/issues"
+  },
+  "homepage": "https://github.com/carlosbandelli/Knex_avancado#readme",
+  "dependencies": {
+    "knex": "^0.95.6",
+    "mysql2": "^2.2.5"
+  }
+}
