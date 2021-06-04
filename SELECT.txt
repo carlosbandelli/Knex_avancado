@@ -1,0 +1,2 @@
+Select
+database.select().table()//qual tabela quero tirar os dados

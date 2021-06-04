@@ -26,3 +26,8 @@ database.insert(dados).into("games").then(data=>{
 })
 */
 
+database.select().table("games").then(data => {
+    console.log(data)
+}).catch(err => {
+    console.log(err)
+})
