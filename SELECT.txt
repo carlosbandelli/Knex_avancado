@@ -1,2 +1,27 @@
 Select
-database.select().table()//qual tabela quero tirar os dados
+database.select().table()//qual tabela quero tirar os dados.
+se for pegar todoso dados do banco de dados ussasse
+ database.select().table("games").then(data => {
+   console.log(data)
+ }).catch(err => {
+     console.log(err)
+
+Agora se for pegar umas informação ussasse o [''] como exemplo:
+
+/ database.select(["id","preco"]).table("games").then(data => {
+//     console.log(data)
+// }).catch(err => {
+//     console.log(err)
+
+agora se quiser inserer e selecionar usassasse assim:
+isso é chamado de NESTED QUERIES
+
+database.insert({nome:"Mists of noyah", preco:"25"}).into("games").then(data => {
+    database.select(["id","preco"]).table("games").then(data => {
+        console.log(data)
+    }).catch(err => {
+        console.log(err)
+    })
+}).catch(err => {
+    console.log(err)
+})

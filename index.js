@@ -1,19 +1,19 @@
 var database = require("./database")
 // var dados = [
-//  INSERT
+//  //INSERT
 // {
 //     nome: "Call of Duty WarZone",
-//     preço: 60.00
+//     preco: 60.00
 // },
 
 // {
 //     nome: "League Of Legends",
-//     preço: 30.00
+//     preco: 30.00
 // },
 
 // {
 //     nome: "CyberPunk 2077",
-//     preço: 270.00
+//     preco: 270.00
 // },
 // ]
 // database.insert(dados).into("games").then(data=>{
@@ -23,16 +23,15 @@ var database = require("./database")
 // })
 
 //SELECT
-database.select(["id","preço"]).table("games").then(data=>{
-    console.log(data)
-}).catch(err=>{
-    console.log(err)
-})
-
+// database.select(["id","preco"]).table("games").then(data => {
+//     console.log(data)
+// }).catch(err => {
+//     console.log(err)
+// })
 
 // NESTED QUERIES
-database.insert({nome:"Mists of noyah", preço:"25"}).into("games").then(data => {
-    database.select(["id","preço"]).table("games").then(data => {
+database.insert({nome:"Mists of noyah", preco:"25"}).into("games").then(data => {
+    database.select(["id","preco"]).table("games").then(data => {
         console.log(data)
     }).catch(err => {
         console.log(err)
