@@ -1,0 +1,28 @@
+Montando chave estranjeira
+1- criar uma nova tabela
+
+2- criar uma primary key
+ atributos dela - Unsigned - auto incremente 
+
+3- criar nossa chave estrangeira
+* TEM QUE TER CERTEZA QUE SUA TABELA ESTA CRIADA NO BANCO DE DADOS
+
+
+
+VÁ NA aba Foreign keys
+
+estará assim
+
+coluna:          |
+Foreign Key name |Referenced Table
+FK1              |`knexjs`.`games`(essa chave vai fazer refenrencia a chave que eu quero da outra tabela)
+
+Column           |Referencied Column 
+ id              |
+ nome            |
+* game_id        |id (essa chave esta fazendo referencia a tabela games da coluna id, ou seja minha chave game_id ta fazendo referncia com a coluna ID da tabela game)
+
+Na opção on update:
+coloque cascade pois assim que deletar na tabela games tambem será deletado na tabela estudios
+
+Na opção on delete:
