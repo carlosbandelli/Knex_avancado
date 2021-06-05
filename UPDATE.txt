@@ -1,0 +1,13 @@
+UPDATE
+Sempre respeitar o campo que voce ta uilizando para alterar, voce quer alterar nome então nao adianta passar valor bolleano ou numero e assim secessivamente 
+e nunca passe valores nulos valores undefined
+database.where({id: 4}).update({preco: 40}).table("games").then(data => {
+    console.log(data)
+}).catch(err => {
+    console.log(err)
+})
+
+assim ele volta quantos eles alterou no terminal
+assim:
+
+1

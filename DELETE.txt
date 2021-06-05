@@ -1,0 +1,12 @@
+Para usar o comando delete  precisa de uma condição ou seja um where antes
+ posso deletar pelo id pelo nome tanto faz. exemplo:(pode ser coloca quantas clausulas where que quiser é ilimitado)
+
+database.where({id:3}).delete().table("games").then(data=>{
+    console.log(data)
+}).catch(err =>{
+    console.log(err)
+})
+
+quando voce verificar no terminal eel voltarar quando registors foram deletados, ou seja quantos foram deletados
+ 1
+retornou que le deletou só um com a condição que eu dei

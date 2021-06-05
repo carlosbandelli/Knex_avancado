@@ -1,0 +1,43 @@
+Para ver no console log
+precisa fazer assim
+ var query = database.select().where({nome:"Mists of noyah"}).table("games")
+
+console.log(query.toQuery()) <- usar o metodo toQuery() -assim ele aparce em forma de uma lingagem SQL no console.log
+
+S eu quiser posso ate mixar com select
+
+var query = database.select(["id","preco"])
+    .where({nome:"Mists of noyah"})
+    .whereRaw("nome = 'Mists of noyah' OR preco > 50") // aqui voce faz uma condição nesse caso ele vai procuar esse nome ou um game com o respsctivo valor e vai voltar o que achar
+    .orWhere({id: 3}) // nesse caso voce só procura o primeiro where e esse a diferençã que na where raw vcoe criar condição e nesse a unica condição é OR
+    .where({id: 2})
+    .table("games") 
+
+assim voce pode mixar, o ideal é sempre usar só um where para manter sua query limpa:
+
+database.select(["id","preco"])
+    .whereRaw("nome = 'Mists of noyah' OR preco > 50")
+     .table("games").then(data =>{
+        console.log(data)
+    }).catch(err =>{
+        console.log(err)
+    })
+e o retorno vai ser esse no terminal:
+
+[
+  TextRow { id: 1, preco: 60 }, 
+  TextRow { id: 3, preco: 270 },
+  TextRow { id: 4, preco: 25 }
+]
+
+
+
+// Digamos que voce quer fazer uma query(uma linguagem sql) que o Knex não te dá essa flexibilidade
+//então voce pode burlar desse maneira
+// metyodod raw serve para isso voce escreve a maneira que voce quer 
+database.raw("SELECT * FROM games").then(data => {
+    console.log(data)
+}).catch(err =>{
+    console.log(err)
+})
+
