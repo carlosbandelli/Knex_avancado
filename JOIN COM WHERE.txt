@@ -1,0 +1,10 @@
+Misturar join com where:
+
+database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").where("games.id").then(data => {
+    console.log(data)
+}).catch(err => {
+    console.log(err)
+}) 
+
+recomenda-se colocar o where no final do joinn.
+Quando mostrar no terminal o que retornou ele retorno os dados de quem tem o relacionamento com a tabela se nao tiver ele volta vazio

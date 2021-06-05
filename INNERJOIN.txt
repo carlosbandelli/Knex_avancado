@@ -1,0 +1,58 @@
+O que é JOIN?
+Um join é o jeito de voce unir duas tabelas em uma só consulta.
+
+No caso quero fazer uma busca nas tabelas dos banco de dados que estão relacionado. 
+para fazer isso usaremos o innerjoin
+
+Innerjoin?
+O innerjoin ele é um join que vai juntar duas tabelas, ignorando o registros nas tabelas que relacionamentos nulos
+por exemplo:
+Na minha tabela estudios eu tenho um estudios que nao tem um game esse estuido não vai ser considerado no meu join
+
+database.select().table("games").innerJoin("estudios")
+O que significa essa query:
+ O banco de dados quero que voce  pega a tabela games e a tabela estudios para esse select que estou fazendo aqui
+
+Só que pra voce fazer um joinn precisa ter um relacionamento entre elas uma chave estrageira
+
+							Nome tab| coluna  Nometab|coluna
+database.select().table("games").innerJoin("estudios", "estudios.game_id", "games.id")
+
+Ou seja um vou dar um join da coluna game_id na tabela estudios para a coluna id da tabela games
+
+A query ficou assim:
+
+database.select().table("games").innerJoin("estudios", "estudios.game_id", "games.id").then(data => {
+    console.log(data)
+}).catch(err => {
+    console.log(err)
+})
+
+porem assim ele nao retorna os dados da outra tabela só de uma para resolver isso
+
+
+	   nometabela|coluna  Ntabela|col var que recebe col
+database.select(["games.id", "estudios.id as estudio_id","game.nome as game_nome", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").then(data => {
+    console.log(data)
+}).catch(err => {
+    console.log(err)
+})
+
+porem da pra simplificar
+
+database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").then(data => {
+    console.log(data)
+}).catch(err => {
+    console.log(err)
+})
+
+Desse modo voce retorno todas as colunas do tabela e na segunda tabela vocÊ só retorna a coluna nome
+
+[
+  TextRow {
+    id: 2,
+    nome: 'League Of Legends',
+    preco: 30,
+    estudio_nome: 'Riot'      
+  }
+]

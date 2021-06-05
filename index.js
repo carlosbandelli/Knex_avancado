@@ -88,6 +88,8 @@ var database = require("./database")
 //     console.log(err)
 // }) // crescente
 
+
+/* Associated inserts
 database.insert({
     nome: "Riot",
     game_id: 2
@@ -95,4 +97,43 @@ database.insert({
 console.log(data)
 }).catch(err =>{
 console.log(err)
+}) */
+
+//INNERJOIN 1 para 1
+
+// database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").then(data => {
+//     console.log(data)
+// }).catch(err => {
+//     console.log(err)
+// }) 
+
+// WHERE COM JOIN
+
+// database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").where("games.id",2).then(data => {
+//     console.log(data)
+// }).catch(err => {
+//     console.log(err)
+// 
+
+// 1 para muitos
+/*
+database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").then(data => {
+    var estudiosGamesArray = data
+    var game = {
+        id: 0,
+        nome: "",
+        estudios:[]
+    }
+
+    game.id = data[0].id
+    game.nome = data[0].nome
+
+    data.forEach(estudio => {
+        game.estudios.push({nome: estudio.estudio_nome})
+    })
+    console.log(game)
+
+}).catch(err => {
+    console.log(err)
 })
+*/ 
