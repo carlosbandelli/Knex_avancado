@@ -1,0 +1,50 @@
+Relacionamentos muito para muitos
+
+Não basta ir apenas na tabela de estudios game_id e adicionar mais chaves estrageiras e enm ir na tabela de games e adicionar
+alguma chave estrangeira como estudio_id.
+
+por dessa forma voce não estaria construindo um relacionamento muito pra muitos, seria um relacionamento 1 para 1 nesse caso ou 1 para m
+
+!!!importante!!!: não tem como você construir relacionamento muitos para muitos com apenas 2 tabelas, voce precisa ter pelo menos
+mais uma tabela que é chamada de tabela de junção ou tabela intermediaria.
+
+então para construir uma tabela de muitos para muitos:
+
+Nesse caso de estudios e gaems eu teria que ter uma tabela que teria que ter campos como game_id e estudios_ id e para cada relacionamento que eu fosse
+adicionar entre estudios e games eu teria que adicionar um registro novo nessa tabela.
+
+Iremos criar uma tabela de junção que geralmente leva o nome das duas tabelas que iram se relacionar:
+ exemplo nossa tabela criado no mysql
+
+games_estudios
+
+criamos chaves qeu vão se relacionar com as tabelas
+que tem que ser os mesmos atributos da tabela que vai se relacionar
+
+parametros para cria a chave estrangeira
+
+1- primeiro o nome da chave
+
+2- A tabela que esta usando com referencia( ou seja a tabela que voce vai concetar com essa chave)
+ no caso TABELA : games
+
+3 - O nome da sua coluna da tabela de junção (á tabela que tem o voce criou a chave estrangeira)
+
+4- a coluna de referencia da tabela que vai vai a conexão (ou seja a tabela que vai relacionar)
+
+exemplo no MySQL:
+
+Foreign Key Name       |Referenced Table
+FK_games_estudios_games| `knexjs`.`games` 
+
+Column  | Referend Column
+games_id| id
+
+on Update: Cascade
+on Delete: Cascade
+
+Mexendo na tabela de Junção Games_estuidos:
+
+entra na sua tabela de junção e criar um registro.
+
+e na coluna id e games_id e estudios_id

@@ -137,3 +137,4 @@ database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").inn
     console.log(err)
 })
 */ 
+
