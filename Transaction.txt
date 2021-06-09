@@ -1,0 +1,43 @@
+Supor que você executa nesse controller algo como, inserir um registro, depois
+fazer um select, depois fazer, um verificação, depois fazer um update, depois vou inserir
+outro registro, depois vou fazer outro delete,
+depois vou fazer um select e retornar os dados
+
+Fazendo varias operaçoes de uma vez só em um lugar.
+
+agora vamos, supor, que do seu projeto, seu negócio, essas operações são dependentes uma das outras,
+elas precisam serem feitas juntas para que a informaçõa seja consistente.
+
+Agora o que será que acontece naquele controller se aparecer uma falha no meio dele?
+
+tudo o que vier depois da falha não acontecera e seu dados salvos nao vão ter relacionamento seu codigo vai crashar
+ 
+então para isso usamos a trasaction
+
+Como que funsiona a transação
+
+a trasação vai permitir que voce faz multiplas ações dentro dela, e se qualquer falha acontecer dentro da transação ela vai desfazer tudo
+
+ela faz o que ela protege seu banco de dados, e isso mantem a integridade do banco dados
+
+tem como voce usar knex com promises porem isso nao é o ideal o ideal é usar o async e await
+
+voce precisa criaqr uma função para usar async e await e dentro deel voce usa o metodo transaction e dentro desse metodo voce usa tambem async e await
+ficando dessa maneira essa é a estrutura pra usar transaction
+
+
+async function testeTransacao(){
+    try{
+        await database.transaction(async trans => {
+            await database.insert({nome: "Qualquer nome"}).table("estudios");
+            await database.insert({nome: "Pyxerelia"}).table("estudios");
+            await database.insert({nome: "Mojang"}).table("estudios");
+            await database.insert({nome: "Gearbox"}).table("estudios")
+        })
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+testeTransacao()
