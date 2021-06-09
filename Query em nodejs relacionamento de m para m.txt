@@ -1,0 +1,92 @@
+Quando voce trabalha com Many to many vocõe precisa fazer dois join um join para tabela de game e outra pra tabela de estudio.
+
+fica assim:
+
+database.select().table("games_estuidos")
+.innerJoin("games", "games.id", "games_estudios.game_id").then(data =>{
+    console.log(data)
+} ).catch(err =>{
+    console.log(err)
+})
+
+para fazer um inner join precisa-se fazer assim:
+
+primeiro o nome da tabela: ( nota-se que o '.' separa o nome da tabela com o nome da coluna)
+ "games"
+
+segundo o nome da tabele  a coluna: ( nota-se que o '.' separa o nome da tabela com o nome da coluna)
+"games.id"
+
+terceiro o nome da tabela que vai comparar com a coluna: ( nota-se que o '.' separa o nome da tabela com o nome da coluna)
+
+"games_estudios.games.id"
+
+estrutura completa fica assim
+
+.innerJoin("games", "games.id", "games_estudios.game_id")
+
+para ficar menos polido e mais legivel:
+ podemos fazer da seguinte maneira, filtar pelo game com o .where() e dentro de sse wherer colocamos o nome da tabela e da coluna e  colocamos uma referencia(id) do que esta na coluna
+
+
+.innerJoin("games", "games.id", "games_estudios.game_id").where("games.id",1)
+
+E agora fazemos outro join para a coluna estudio_id, só que porem na mesmo linha do primeiro join e antes do where:
+para fazer ele retornar no terminal o que voce ta querendo dos estudios tem que se colocar [] no select confoerm exemplo:
+(Nota-se que o "." separra tabela de coluna)
+
+database.select([
+    "estudios.nome as estudios_nome",
+    "estudios.id as estudio_id",
+    "games.nome as games_nome",
+    "games.id as games_id",
+    "games.preco"
+]).table("games_estudios")
+.innerJoin("games", "games.id", "games_estudios.game_id")
+.innerJoin("estudios","estudios.id","games_estudios.estudio_id")
+.where("games.id", 2)
+.then(data =>{
+    console.log(data)
+} ).catch(err =>{
+    console.log(err)
+})
+
+nesse codigo abaixo com where em estudios:
+
+/* COM WHERE EM ESTUDIOS 
+database.select([
+    "estudios.nome as estudios_nome",
+    "estudios.id as estudio_id",
+    "games.nome as games_nome",
+    "games.id as games_id",
+    "games.preco"
+]).table("games_estudios")
+.innerJoin("games", "games.id", "games_estudios.game_id")
+.innerJoin("estudios","estudios.id","games_estudios.estudio_id")
+.where("estudios.id", 1)
+.then(data =>{
+    console.log(data)
+} ).catch(err =>{
+    console.log(err)
+})*/
+
+nesse código abaixo sem where:
+
+/* SEM WHERE
+database.select([
+    "estudios.nome as estudios_nome",
+    "estudios.id as estudio_id",
+    "games.nome as games_nome",
+    "games.id as games_id",
+    "games.preco"
+]).table("games_estudios")
+.innerJoin("games", "games.id", "games_estudios.game_id")
+.innerJoin("estudios","estudios.id","games_estudios.estudio_id")
+.then(data =>{
+    console.log(data)
+} ).catch(err =>{
+    console.log(err)
+})*/
+
+
+
